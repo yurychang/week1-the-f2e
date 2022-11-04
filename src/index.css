@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+TC:wght@400;700&display=swap');
+
+@layer base {
+    html {
+        @apply text-[16px] md:text-[18px];
+        font-family: 'Do Hyeon', 'Noto Sans TC', sans-serif;
+    }
+}
