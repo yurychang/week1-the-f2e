@@ -1,4 +1,4 @@
-import { HTMLAttributes, ComponentType } from 'react'
+import { HTMLAttributes, ElementType } from 'react'
 
 const StrokeText = ({
     as: Comp = 'div',
@@ -8,7 +8,7 @@ const StrokeText = ({
     children,
     ...props
 }: {
-    as?: keyof JSX.IntrinsicElements | ComponentType
+    as?: ElementType
     strokeWidth?: number
     strokeColor?: string
 } & HTMLAttributes<any>) => {

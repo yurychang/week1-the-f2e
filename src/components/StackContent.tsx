@@ -24,7 +24,7 @@ const StackContent = ({
                 .map((_, i) => (
                     <div
                         key={i}
-                        className="whitespace-nowrap text-transparent opacity-70"
+                        className="whitespace-nowrap text-transparent opacity-70 transition-transform duration-500"
                         style={{
                             position: !!i ? 'absolute' : 'relative',
                             top: 0,
@@ -39,8 +39,6 @@ const StackContent = ({
                                           i * offset[0]
                                       }px))`
                                     : `translateY(-80px) matrix(1, -0.22, 0, 0.98, 0, 0)`,
-                            transition:
-                                'transform 0.6s cubic-bezier(0, 0, 0.6, 1)',
                         }}
                     >
                         {children}
