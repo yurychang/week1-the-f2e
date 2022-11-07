@@ -5,14 +5,16 @@ export const styledEl =
     (Comp: React.ComponentType | keyof JSX.IntrinsicElements) =>
     (strings?: TemplateStringsArray, ...params: any[]) =>
     (props: React.ComponentProps<any>) => {
-        const className = strings?.reduce(
-            (s, c, i) => s + c + (params[i] ?? ''),
-            ''
-        )
+        const className = strings?.reduce((cls, fragment, i) => {
+            const vOrFn = params[i]
+            const v = typeof vOrFn === 'function' ? vOrFn(props) : vOrFn
+            return cls + fragment + (v ?? '')
+        }, '')
+
         return (
             <Comp
-                className={classNames(className, props.className)}
                 {...props}
+                className={classNames(className, props.className)}
             />
         )
     }

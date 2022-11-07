@@ -1,4 +1,4 @@
-import MainTitle from 'components/mainTitle'
+import MainTitle from 'components/MainTitle'
 import style from './App.module.css'
 
 function App() {

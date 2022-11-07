@@ -4,8 +4,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'dark-bg': '#333',
-                'light-bg': '#Fafafa',
+                dark: '#333',
                 yellow: '#FFF1AA',
                 primary: '#F1CB04',
                 black: '#000',
@@ -15,8 +14,8 @@ module.exports = {
                 'primary-btn': '#F1CB04',
                 'primary-btn-hover': '#F1AF04',
                 'Secondary-btn': '#FFF1AA',
-                '$dark-card-bg': '＃424242',
-                '$dark-card-bg-hover': '#4F4F4F',
+                'dark-card-bg': '＃424242',
+                'dark-card-bg-hover': '#4F4F4F',
             },
             fontFamily: {
                 'do-hyeon': 'Do Hyeon',
