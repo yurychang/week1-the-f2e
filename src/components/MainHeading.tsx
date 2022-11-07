@@ -1,45 +1,68 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, ComponentProps } from 'react'
 import StackContent from './StackContent'
 import StrokeText from './StrokeText'
 import el from './styleEl'
 
 const Container = el.div`relative h-screen w-screen overflow-hidden select-none`
 
-const MainTitle = () => {
-    const [mode, setMode] = useState<any>('h')
-    const [done, setDone] = useState(false)
-    const bg = !mode ? 'light' : 'dark'
+const MainHeading = ({ start }: { start?: Boolean }) => {
+    const [step, setStep] = useState<number>(0)
+    const [isDone, setIsDone] = useState(false)
+
+    let bg: string,
+        stackDirection: ComponentProps<typeof StackContent>['direction']
+    switch (step) {
+        case 0:
+            bg = 'dark'
+            stackDirection = 'h'
+            break
+        case 1:
+            bg = 'dark'
+            stackDirection = 'v'
+            break
+        case 2:
+            bg = 'light'
+            break
+
+        default:
+            bg = 'dark'
+            stackDirection = ''
+            break
+    }
 
     useEffect(() => {
-        const id = setTimeout(() => {
-            setMode('v')
-        }, 1000)
+        let id: ReturnType<typeof setTimeout>
 
-        const id2 = setTimeout(() => {
-            setMode('')
-        }, 2500)
+        if (start) {
+            setTimeout(() => {
+                setStep(1)
+            }, 0)
+
+            id = setTimeout(() => {
+                setStep(2)
+            }, 1500)
+        }
 
         return () => {
-            clearTimeout(id)
-            clearTimeout(id2)
+            id && clearTimeout(id)
         }
-    }, [])
+    }, [start])
 
     const handleTransitionEnd = () => {
-        if (!mode) {
-            setDone(true)
+        if (step === 2) {
+            setIsDone(true)
         }
     }
 
     return (
         <Container
-            className={`${!mode ? 'bg-light' : 'bg-dark'}`}
+            className={`${bg === 'light' ? 'bg-light' : 'bg-dark'}`}
             style={{
                 transition: 'background .6s cubic-bezier(0, 0, .6, 1)',
             }}
         >
             <StackContent
-                direction={mode}
+                direction={stackDirection}
                 repeat={6}
                 offset={[35, 18]}
                 onTransitionEnd={handleTransitionEnd}
@@ -51,9 +74,9 @@ const MainTitle = () => {
                 <StrokeText
                     as="span"
                     strokeColor={
-                        done ? '#F1CB04' : bg === 'dark' ? 'white' : 'black'
+                        isDone ? '#F1CB04' : bg === 'dark' ? 'white' : 'black'
                     }
-                    className={done ? 'text-primary' : 'text-transparent'}
+                    className={isDone ? 'text-primary' : 'text-transparent'}
                     style={{
                         transition:
                             'color .6s cubic-bezier(0, 0, .6, 1), -webkit-text-stroke-color .6s cubic-bezier(0, 0, .6, 1)',
@@ -64,9 +87,9 @@ const MainTitle = () => {
                 <StrokeText
                     as="span"
                     strokeColor={
-                        done ? 'black' : bg === 'dark' ? 'white' : 'black'
+                        isDone ? 'black' : bg === 'dark' ? 'white' : 'black'
                     }
-                    className={done ? 'text-black' : 'text-transparent'}
+                    className={isDone ? 'text-black' : 'text-transparent'}
                     style={{
                         transition:
                             'color .6s cubic-bezier(0, 0, .6, 1), -webkit-text-stroke-color .6s cubic-bezier(0, 0, .6, 1)',
@@ -76,7 +99,7 @@ const MainTitle = () => {
                 </StrokeText>
             </StackContent>
             <StackContent
-                direction={mode}
+                direction={stackDirection}
                 repeat={6}
                 offset={[35, 18]}
                 onTransitionEnd={handleTransitionEnd}
@@ -88,9 +111,9 @@ const MainTitle = () => {
                 <StrokeText
                     as="span"
                     strokeColor={
-                        done ? '#F1CB04' : bg === 'dark' ? 'white' : 'black'
+                        isDone ? '#F1CB04' : bg === 'dark' ? 'white' : 'black'
                     }
-                    className={done ? 'text-primary' : 'text-transparent'}
+                    className={isDone ? 'text-primary' : 'text-transparent'}
                     style={{
                         transition:
                             'color .6s cubic-bezier(0, 0, .6, 1), -webkit-text-stroke-color .6s cubic-bezier(0, 0, .6, 1)',
@@ -101,9 +124,9 @@ const MainTitle = () => {
                 <StrokeText
                     as="span"
                     strokeColor={
-                        done ? 'black' : bg === 'dark' ? 'white' : 'black'
+                        isDone ? 'black' : bg === 'dark' ? 'white' : 'black'
                     }
-                    className={done ? 'text-black' : 'text-transparent'}
+                    className={isDone ? 'text-black' : 'text-transparent'}
                     style={{
                         transition:
                             'color .6s cubic-bezier(0, 0, .6, 1), -webkit-text-stroke-color .6s cubic-bezier(0, 0, .6, 1)',
@@ -116,4 +139,4 @@ const MainTitle = () => {
     )
 }
 
-export default MainTitle
+export default MainHeading

@@ -1,10 +1,9 @@
-import MainTitle from 'components/MainTitle'
-import style from './App.module.css'
+import MainHeading from 'components/MainHeading'
 
 function App() {
     return (
         <div>
-            <MainTitle></MainTitle>
+            <MainHeading start={true}></MainHeading>
         </div>
     )
 }
