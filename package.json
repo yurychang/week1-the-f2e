@@ -4,6 +4,8 @@
     "private": true,
     "dependencies": {
         "@craco/craco": "^6.4.5",
+        "@master/literal": "^1.0.11",
+        "@master/style-element.react": "^1.1.6",
         "@testing-library/jest-dom": "^5.14.1",
         "@testing-library/react": "^13.0.0",
         "@testing-library/user-event": "^13.2.1",

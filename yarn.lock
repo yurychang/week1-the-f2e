@@ -2144,6 +2144,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@master/literal@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "@master/literal@npm:1.0.11"
+  checksum: 997a088576897795001cfd5d5660eca37db057bd0f3faff766aba570beaf2085652483c9c863bce29f5795b6b4505b749080ea1b8a4fab4a0776348f459b45bc
+  languageName: node
+  linkType: hard
+
+"@master/style-element.react@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@master/style-element.react@npm:1.1.6"
+  peerDependencies:
+    "@master/literal": ">=1.0.7"
+    "@types/react": ">=15"
+  checksum: 34997c749bba0a8e6dde50005374f6b141a5041292f29173c9db7c268a43a77136e510ea313195bfada25df527ae7be19002094bef7a0c11614a28ae373c194e
+  languageName: node
+  linkType: hard
+
 "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1":
   version: 5.1.1-v1
   resolution: "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1"
@@ -6230,6 +6247,8 @@ __metadata:
   resolution: "f2e-event-website@workspace:."
   dependencies:
     "@craco/craco": ^6.4.5
+    "@master/literal": ^1.0.11
+    "@master/style-element.react": ^1.1.6
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^13.0.0
     "@testing-library/user-event": ^13.2.1

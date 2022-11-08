@@ -5,30 +5,31 @@ import el from './styleEl'
 
 const Container = el.div`relative h-screen w-screen overflow-hidden select-none`
 
+const animState: {
+    [key: string]: {
+        bg: string
+        stackDirection: ComponentProps<typeof StackContent>['direction']
+    }
+} = {
+    0: {
+        bg: 'dark',
+        stackDirection: 'h',
+    },
+    1: {
+        bg: 'dark',
+        stackDirection: 'v',
+    },
+    2: {
+        bg: 'light',
+        stackDirection: '',
+    },
+}
+
 const MainHeading = ({ start }: { start?: Boolean }) => {
     const [step, setStep] = useState<number>(0)
     const [isDone, setIsDone] = useState(false)
 
-    let bg: string,
-        stackDirection: ComponentProps<typeof StackContent>['direction']
-    switch (step) {
-        case 0:
-            bg = 'dark'
-            stackDirection = 'h'
-            break
-        case 1:
-            bg = 'dark'
-            stackDirection = 'v'
-            break
-        case 2:
-            bg = 'light'
-            break
-
-        default:
-            bg = 'dark'
-            stackDirection = ''
-            break
-    }
+    const anim = animState[step as keyof typeof animState]
 
     useEffect(() => {
         let id: ReturnType<typeof setTimeout>
@@ -56,50 +57,51 @@ const MainHeading = ({ start }: { start?: Boolean }) => {
 
     return (
         <Container
-            className={`${bg === 'light' ? 'bg-light' : 'bg-dark'}`}
+            className={`${anim.bg === 'light' ? 'bg-light' : 'bg-dark'}`}
             style={{
                 transition: 'background .6s cubic-bezier(0, 0, .6, 1)',
             }}
         >
             <StackContent
-                direction={stackDirection}
+                direction={anim.stackDirection}
                 repeat={6}
                 offset={[35, 18]}
                 onTransitionEnd={handleTransitionEnd}
-                className="!absolute top-1/2 left-1/2 text-[270px]"
-                style={{
-                    transform: 'translate(-50%, -50%)',
-                }}
+                className="!absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[270px]"
             >
                 <StrokeText
                     as="span"
                     strokeColor={
-                        isDone ? '#F1CB04' : bg === 'dark' ? 'white' : 'black'
+                        isDone
+                            ? '#F1CB04'
+                            : anim.bg === 'dark'
+                            ? 'white'
+                            : 'black'
                     }
-                    className={isDone ? 'text-primary' : 'text-transparent'}
-                    style={{
-                        transition:
-                            'color .6s cubic-bezier(0, 0, .6, 1), -webkit-text-stroke-color .6s cubic-bezier(0, 0, .6, 1)',
-                    }}
+                    className={`transition-colors duration-500 ${
+                        isDone ? 'text-primary' : 'text-transparent'
+                    }`}
                 >
                     The F2E
                 </StrokeText>{' '}
                 <StrokeText
                     as="span"
                     strokeColor={
-                        isDone ? 'black' : bg === 'dark' ? 'white' : 'black'
+                        isDone
+                            ? 'black'
+                            : anim.bg === 'dark'
+                            ? 'white'
+                            : 'black'
                     }
-                    className={isDone ? 'text-black' : 'text-transparent'}
-                    style={{
-                        transition:
-                            'color .6s cubic-bezier(0, 0, .6, 1), -webkit-text-stroke-color .6s cubic-bezier(0, 0, .6, 1)',
-                    }}
+                    className={`transition-colors duration-500 ${
+                        isDone ? 'text-black' : 'text-transparent'
+                    }`}
                 >
                     4th
                 </StrokeText>
             </StackContent>
             <StackContent
-                direction={stackDirection}
+                direction={anim.stackDirection}
                 repeat={6}
                 offset={[35, 18]}
                 onTransitionEnd={handleTransitionEnd}
@@ -111,26 +113,30 @@ const MainHeading = ({ start }: { start?: Boolean }) => {
                 <StrokeText
                     as="span"
                     strokeColor={
-                        isDone ? '#F1CB04' : bg === 'dark' ? 'white' : 'black'
+                        isDone
+                            ? '#F1CB04'
+                            : anim.bg === 'dark'
+                            ? 'white'
+                            : 'black'
                     }
-                    className={isDone ? 'text-primary' : 'text-transparent'}
-                    style={{
-                        transition:
-                            'color .6s cubic-bezier(0, 0, .6, 1), -webkit-text-stroke-color .6s cubic-bezier(0, 0, .6, 1)',
-                    }}
+                    className={`transition-colors duration-500 ${
+                        isDone ? 'text-primary' : 'text-transparent'
+                    }`}
                 >
                     互動式
                 </StrokeText>{' '}
                 <StrokeText
                     as="span"
                     strokeColor={
-                        isDone ? 'black' : bg === 'dark' ? 'white' : 'black'
+                        isDone
+                            ? 'black'
+                            : anim.bg === 'dark'
+                            ? 'white'
+                            : 'black'
                     }
-                    className={isDone ? 'text-black' : 'text-transparent'}
-                    style={{
-                        transition:
-                            'color .6s cubic-bezier(0, 0, .6, 1), -webkit-text-stroke-color .6s cubic-bezier(0, 0, .6, 1)',
-                    }}
+                    className={`transition-colors duration-500 ${
+                        isDone ? 'text-black' : 'text-transparent'
+                    }`}
                 >
                     網頁設計
                 </StrokeText>
