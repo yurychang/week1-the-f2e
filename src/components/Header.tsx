@@ -1,20 +1,22 @@
 import Button from './Button'
 import el from '@master/style-element.react'
-
-type Theme = 'light' | 'dark'
+import useStore from 'store'
 
 const NavLink = el.a`${({ $theme }) =>
     $theme === 'dark'
         ? 'text-light'
         : 'text-dark'} opacity-70 transition-colors hover:text-primary-focus`
 
-const Divider = el.a`h-[27px] w-[1px] ${({ $theme }) =>
-    $theme === 'dark' ? 'bg-light' : 'bg-dark'}`
+const Divider = el.a`h-[27px] w-[1px] transition-colors duration-500 ${({
+    $theme,
+}) => ($theme === 'dark' ? 'bg-light' : 'bg-dark')}`
 
-const Title = el.span`${({ $theme }) =>
+const Title = el.span`transition-colors duration-500 ${({ $theme }) =>
     $theme === 'dark' ? 'text-light' : 'text-dark'} text-[30px]`
 
-const Header = ({ theme = 'light' }: { theme?: Theme }) => {
+const Header = () => {
+    const theme = useStore((state) => state.headerTheme)
+
     return (
         <header className="fixed top-0 left-0 right-0 z-50 px-8 py-5 flex justify-end items-center gap-6">
             <Title $theme={theme}>The F2E</Title>

@@ -1,9 +1,12 @@
 import { useEffect, useState, ComponentProps } from 'react'
+import useStore from 'store'
 import StackContent from './StackContent'
 import StrokeText from './StrokeText'
 import el from './styleEl'
 
-const Container = el.div`relative h-screen w-screen overflow-hidden select-none`
+const Container = el.div`relative h-screen w-screen overflow-hidden select-none transition-colors duration-500`
+
+const GridLine = el.div`absolute top-[3%] bottom-[3%] left-0 w-[1px] bg-white opacity-20`
 
 const animState: {
     [key: string]: {
@@ -26,6 +29,8 @@ const animState: {
 }
 
 const MainHeading = ({ start }: { start?: Boolean }) => {
+    const setHeaderTheme = useStore((state) => state.setHeaderTheme)
+
     const [step, setStep] = useState<number>(0)
     const [isDone, setIsDone] = useState(false)
 
@@ -41,13 +46,14 @@ const MainHeading = ({ start }: { start?: Boolean }) => {
 
             id = setTimeout(() => {
                 setStep(2)
-            }, 1500)
+                setHeaderTheme('light')
+            }, 1000)
         }
 
         return () => {
             id && clearTimeout(id)
         }
-    }, [start])
+    }, [setHeaderTheme, start])
 
     const handleTransitionEnd = () => {
         if (step === 2) {
@@ -55,13 +61,20 @@ const MainHeading = ({ start }: { start?: Boolean }) => {
         }
     }
 
+    const bgLines = Array(5)
+        .fill(undefined)
+        .map((_, i) => (
+            <GridLine
+                key={i}
+                style={{ transform: `translateX(${(i + 1) * 17}vw)` }}
+            />
+        ))
+
     return (
         <Container
-            className={`${anim.bg === 'light' ? 'bg-light' : 'bg-dark'}`}
-            style={{
-                transition: 'background .6s cubic-bezier(0, 0, .6, 1)',
-            }}
+            className={`${anim.bg === 'light' ? 'bg-light' : 'bg-dark'} `}
         >
+            {bgLines}
             <StackContent
                 direction={anim.stackDirection}
                 repeat={6}
