@@ -1,15 +1,15 @@
 import create from 'zustand'
 
-type HeaderTheme = 'light' | 'dark'
+export type BgColor = 'light' | 'dark'
 
-interface StoreState {
-    headerTheme: HeaderTheme
-    setHeaderTheme: (theme: HeaderTheme) => void
+export interface StoreState {
+    bgColor: BgColor
+    setBgColor: (theme: BgColor) => void
 }
 
 const useStore = create<StoreState>()((set) => ({
-    headerTheme: 'dark',
-    setHeaderTheme: (headerTheme) => set(() => ({ headerTheme })),
+    bgColor: 'dark',
+    setBgColor: (bgColor) => set(() => ({ bgColor })),
 }))
 
 export default useStore

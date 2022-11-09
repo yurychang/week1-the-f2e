@@ -1,21 +1,31 @@
-import Button from './Button'
 import el from '@master/style-element.react'
-import useStore from 'store'
+import useStore, { BgColor } from 'store'
+import Button from './Button'
+
+const textColor = {
+    light: 'text-dark',
+    dark: 'text-light',
+}
+
+const dividerColor = {
+    light: 'bg-dark',
+    dark: 'bg-light',
+}
 
 const NavLink = el.a`${({ $theme }) =>
-    $theme === 'dark'
-        ? 'text-light'
-        : 'text-dark'} opacity-70 transition-colors hover:text-primary-focus`
+    textColor[
+        $theme as BgColor
+    ]} opacity-70 transition-colors hover:text-primary-focus`
 
 const Divider = el.a`h-[27px] w-[1px] transition-colors duration-500 ${({
     $theme,
-}) => ($theme === 'dark' ? 'bg-light' : 'bg-dark')}`
+}) => dividerColor[$theme as BgColor]}`
 
 const Title = el.span`transition-colors duration-500 ${({ $theme }) =>
-    $theme === 'dark' ? 'text-light' : 'text-dark'} text-[30px]`
+    textColor[$theme as BgColor]} text-[30px]`
 
 const Header = () => {
-    const theme = useStore((state) => state.headerTheme)
+    const theme = useStore((state) => state.bgColor)
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 px-8 py-5 flex justify-end items-center gap-6">

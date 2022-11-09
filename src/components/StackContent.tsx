@@ -31,14 +31,14 @@ const StackContent = ({
                             left: 0,
                             transform:
                                 direction === 'v'
-                                    ? `translateY(-80px) matrix(1, -0.22, 0, 0.98, 0, 0) translateY(calc(${
+                                    ? `translateY(-40px) matrix(1, -0.22, 0, 0.98, 0, 0) translateY(calc(${
                                           i * offset[1]
                                       }px))`
                                     : direction === 'h'
                                     ? `matrix(1, -0.22, 0, 0.98, 0, 0) translateX(calc(${
                                           i * offset[0]
                                       }px))`
-                                    : `translateY(-80px) matrix(1, -0.22, 0, 0.98, 0, 0)`,
+                                    : `translateY(-40px) matrix(1, -0.22, 0, 0.98, 0, 0)`,
                         }}
                     >
                         {children}

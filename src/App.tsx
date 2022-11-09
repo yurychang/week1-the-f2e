@@ -1,11 +1,13 @@
 import Header from 'components/Header'
-import MainHeading from 'components/MainHeading'
+import ScrollDown from 'components/ScrollDown'
+import Section1 from 'sections/Section1'
 
 function App() {
     return (
         <div>
+            <ScrollDown />
             <Header></Header>
-            <MainHeading start={true}></MainHeading>
+            <Section1></Section1>
         </div>
     )
 }
