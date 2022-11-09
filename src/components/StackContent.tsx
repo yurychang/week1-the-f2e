@@ -4,15 +4,17 @@ import { ReactNode, HTMLAttributes } from 'react'
 const StackContent = ({
     children,
     direction,
-    offset,
+    offset = [0, 0],
     repeat = 1,
+    duration = '.75s',
     className,
     ...props
 }: {
-    children: ReactNode
     direction?: 'v' | 'h' | ''
+    offset?: [number, number]
     repeat?: number
-    offset: [number, number]
+    duration?: string
+    children: ReactNode
 } & HTMLAttributes<HTMLDivElement>) => {
     return (
         <div
@@ -24,21 +26,22 @@ const StackContent = ({
                 .map((_, i) => (
                     <div
                         key={i}
-                        className="whitespace-nowrap text-transparent opacity-70 transition-transform duration-500"
+                        className="whitespace-nowrap text-transparent opacity-70 transition-transform"
                         style={{
                             position: !!i ? 'absolute' : 'relative',
                             top: 0,
                             left: 0,
                             transform:
                                 direction === 'v'
-                                    ? `translateY(-40px) matrix(1, -0.22, 0, 0.98, 0, 0) translateY(calc(${
+                                    ? `translate(30px, -60px) matrix(1, -0.22, 0, 0.98, 0, 0) translateY(calc(${
                                           i * offset[1]
                                       }px))`
                                     : direction === 'h'
                                     ? `matrix(1, -0.22, 0, 0.98, 0, 0) translateX(calc(${
                                           i * offset[0]
                                       }px))`
-                                    : `translateY(-40px) matrix(1, -0.22, 0, 0.98, 0, 0)`,
+                                    : `translate(30px, -60px) matrix(1, -0.22, 0, 0.98, 0, 0)`,
+                            transitionDuration: duration,
                         }}
                     >
                         {children}

@@ -12,7 +12,7 @@ export interface StoreState {
 const useStore = create<StoreState>()((set) => ({
     bgColor: 'dark',
     setBgColor: (bgColor) => set(() => ({ bgColor })),
-    globalTl: gsap.timeline(),
+    globalTl: gsap.timeline({ paused: true }),
 }))
 
 export default useStore

@@ -1,6 +1,6 @@
 import { HTMLAttributes, ElementType } from 'react'
 
-const StrokeText = ({
+const OutlineText = ({
     as: Comp = 'div',
     strokeWidth = 1,
     strokeColor = '#000',
@@ -26,4 +26,4 @@ const StrokeText = ({
     )
 }
 
-export default StrokeText
+export default OutlineText

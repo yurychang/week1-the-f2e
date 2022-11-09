@@ -4,7 +4,7 @@ module.exports = {
     webpack: {
         alias: {
             components: path.resolve(__dirname, 'src/components'),
-            sections: path.resolve(__dirname, 'src/sections'),
+            screens: path.resolve(__dirname, 'src/screens'),
         },
     },
 }
