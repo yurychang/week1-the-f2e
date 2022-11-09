@@ -1,4 +1,4 @@
-import { useEffect, useState, ComponentProps } from 'react'
+import { useEffect, useState, ComponentProps, forwardRef } from 'react'
 import el from '@master/style-element.react'
 import useStore from 'store'
 import StackContent from 'components/StackContent'
@@ -57,7 +57,7 @@ const animState: {
     },
 }
 
-const Section1 = () => {
+const Section1 = forwardRef<HTMLDivElement>((p, ref) => {
     const setBgColor = useStore((state) => state.setBgColor)
 
     const [step, setStep] = useState<number>(0)
@@ -101,7 +101,7 @@ const Section1 = () => {
         ))
 
     return (
-        <Container className={`${anim.bg} `}>
+        <Container ref={ref as any} className={`${anim.bg}`}>
             {bgLines}
             <StackContent
                 direction={anim.stackDirection}
@@ -152,6 +152,6 @@ const Section1 = () => {
             </StackContent>
         </Container>
     )
-}
+})
 
 export default Section1
