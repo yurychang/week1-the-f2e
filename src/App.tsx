@@ -1,20 +1,18 @@
-import { useRef } from 'react'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
 import Header from 'components/Header'
-import useStore from 'store'
 
 import Section1 from 'screens/Screen1'
 import Section2 from 'screens/Screen2'
 
+gsap.registerPlugin(ScrollTrigger)
+
 function App() {
-    const globalTl = useStore((s) => s.globalTl)
-
-    const section1Ref = useRef<HTMLDivElement>(null)
-
     return (
         <div className="h-screen">
             <Header />
-            <Section1 ref={section1Ref} />
+            <Section1 />
             <Section2 />
         </div>
     )

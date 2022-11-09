@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+const defaultColors = require('tailwindcss/colors')
 
 const colors = {
     yellow: '#FFF1AA',
-    black: '#000',
     dark: '#333',
     light: '#Fafafa',
     primary: '#F1CB04',

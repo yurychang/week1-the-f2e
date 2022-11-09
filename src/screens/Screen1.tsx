@@ -1,9 +1,9 @@
 import {
-    useEffect,
     useState,
     ComponentProps,
-    forwardRef,
     ReactNode,
+    useRef,
+    useLayoutEffect,
 } from 'react'
 import { MdOutlineArrowDownward } from 'react-icons/md'
 import { BsPlay } from 'react-icons/bs'
@@ -99,26 +99,57 @@ const animState: {
     },
 }
 
-const Section1 = forwardRef<HTMLDivElement>((p, ref) => {
-    const setBgColor = useStore((state) => state.setBgColor)
+const Section1 = () => {
     const globalTl = useStore((state) => state.globalTl)
+    const setBgColor = useStore((state) => state.setBgColor)
+
+    const containerRef = useRef(null)
+    const tipRef = useRef(null)
 
     const [step, setStep] = useState<number>(0)
 
     const state = animState[step as keyof typeof animState]
 
-    useEffect(() => {
+    useLayoutEffect(() => {
+        document.body.style.overflow = 'hidden'
+
         const tl = gsap
             .timeline()
             .call(() => setStep(1))
-            .to({}, {}, 0.75)
-            .call(() => {
-                setStep(2)
-                setBgColor('light')
+            .call(
+                () => {
+                    setStep(2)
+                    setBgColor('light')
+                },
+                [],
+                0.75
+            )
+            .call(() => setStep(3), [], 1.5)
+            .call(
+                () => {
+                    document.body.style.overflow = 'auto'
+                },
+                [],
+                2
+            )
+            .to(tipRef.current, {
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top top',
+                    end: '+=500',
+                    scrub: true,
+                },
             })
-            .to({}, {}, 1.5)
-            .call(() => setStep(3))
-            .to({}, {}, 0.15)
+            .to(containerRef.current, {
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top top',
+                    end: '+=500',
+                    scrub: true,
+                },
+            })
 
         globalTl.add(tl)
 
@@ -149,11 +180,13 @@ const Section1 = forwardRef<HTMLDivElement>((p, ref) => {
 
     return (
         <Container
-            ref={ref as any}
+            ref={containerRef}
             className={`${state.bg}`}
             onClick={handleClick}
         >
-            <Tip className={state.tipClass}>{state.tip}</Tip>
+            <div ref={tipRef}>
+                <Tip className={state.tipClass}>{state.tip}</Tip>
+            </div>
             {bgLines}
             <StackContent
                 direction={state.stackDirection}
@@ -202,6 +235,6 @@ const Section1 = forwardRef<HTMLDivElement>((p, ref) => {
             </StackContent>
         </Container>
     )
-})
+}
 
 export default Section1
