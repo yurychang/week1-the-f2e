@@ -100,10 +100,11 @@ const animState: {
 }
 
 const Section1 = () => {
-    const globalTl = useStore((state) => state.globalTl)
+    const tl = useRef<gsap.core.Timeline | null>(null)
     const setBgColor = useStore((state) => state.setBgColor)
 
     const containerRef = useRef(null)
+    const headingRef = useRef(null)
     const tipRef = useRef(null)
 
     const [step, setStep] = useState<number>(0)
@@ -111,11 +112,13 @@ const Section1 = () => {
     const state = animState[step as keyof typeof animState]
 
     useLayoutEffect(() => {
-        document.body.style.overflow = 'hidden'
+        if (window.scrollY === 0) {
+            document.body.style.overflow = 'hidden'
+        }
 
-        const tl = gsap
-            .timeline()
-            .call(() => setStep(1))
+        tl.current = gsap
+            .timeline({ paused: true })
+            .call(() => setStep(1), [], 0)
             .call(
                 () => {
                     setStep(2)
@@ -141,7 +144,7 @@ const Section1 = () => {
                     scrub: true,
                 },
             })
-            .to(containerRef.current, {
+            .to(headingRef.current, {
                 opacity: 0,
                 scrollTrigger: {
                     trigger: containerRef.current,
@@ -151,15 +154,15 @@ const Section1 = () => {
                 },
             })
 
-        globalTl.add(tl)
-
         return () => {
-            tl.progress(0).kill()
+            tl.current?.progress(0).kill()
         }
-    }, [globalTl, setBgColor])
+    }, [setBgColor])
 
     const onGlobalWheel = useGlobalEvent('wheel', { passive: false })
-    onGlobalWheel((e) => step !== 3 && e.preventDefault())
+    onGlobalWheel((e) => {
+        step !== 3 && window.scrollY === 0 && e.preventDefault()
+    })
 
     const bgLines = Array(5)
         .fill(undefined)
@@ -174,65 +177,63 @@ const Section1 = () => {
             />
         ))
 
-    const handleClick = () => {
-        globalTl.play()
-    }
+    const onClick = useGlobalEvent('click')
+    onClick(() => {
+        tl.current?.play()
+    })
 
     return (
-        <Container
-            ref={containerRef}
-            className={`${state.bg}`}
-            onClick={handleClick}
-        >
+        <Container ref={containerRef} className={`${state.bg}`}>
             <div ref={tipRef}>
                 <Tip className={state.tipClass}>{state.tip}</Tip>
             </div>
             {bgLines}
-            <StackContent
-                direction={state.stackDirection}
-                repeat={6}
-                offset={[35, 18]}
-                className="!absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[270px]"
-            >
-                <OutlineText
-                    as="span"
-                    strokeColor={state.primaryStroke}
-                    className={`transition-colors duration-500 ${state.primaryText}`}
+            <div ref={headingRef}>
+                <StackContent
+                    direction={state.stackDirection}
+                    repeat={6}
+                    offset={[35, 18]}
+                    className="absolute-center text-[270px]"
                 >
-                    The F2E
-                </OutlineText>{' '}
-                <OutlineText
-                    as="span"
-                    strokeColor={state.normalStroke}
-                    className={`transition-colors duration-500 ${state.normalText}`}
-                >
-                    4th
-                </OutlineText>
-            </StackContent>
-            <StackContent
-                direction={state.stackDirection}
-                repeat={6}
-                offset={[35, 18]}
-                className="!absolute top-1/2 left-1/2 font-bold text-[122px]"
-                style={{
-                    transform: 'translate(-50%, -50%) translate(200px, 180px)',
-                }}
-            >
-                <OutlineText
-                    as="span"
-                    strokeColor={state.primaryStroke}
-                    className={`transition-colors duration-500 ${state.primaryText}`}
-                >
-                    互動式
-                </OutlineText>{' '}
-                <OutlineText
-                    as="span"
-                    strokeColor={state.normalStroke}
-                    className={`transition-colors duration-500 ${state.normalText}`}
-                >
-                    網頁設計
-                </OutlineText>
-            </StackContent>
+                    <OutlineText
+                        as="span"
+                        strokeColor={state.primaryStroke}
+                        className={`transition-colors duration-500 ${state.primaryText}`}
+                    >
+                        The F2E
+                    </OutlineText>{' '}
+                    <OutlineText
+                        as="span"
+                        strokeColor={state.normalStroke}
+                        className={`transition-colors duration-500 ${state.normalText}`}
+                    >
+                        4th
+                    </OutlineText>
+                </StackContent>
+                <div className="absolute-center">
+                    <StackContent
+                        direction={state.stackDirection}
+                        repeat={6}
+                        offset={[35, 18]}
+                        className="font-bold text-[122px] translate-x-[200px] translate-y-[180px]"
+                    >
+                        <OutlineText
+                            as="span"
+                            strokeColor={state.primaryStroke}
+                            className={`transition-colors duration-500 ${state.primaryText}`}
+                        >
+                            互動式
+                        </OutlineText>{' '}
+                        <OutlineText
+                            as="span"
+                            strokeColor={state.normalStroke}
+                            className={`transition-colors duration-500 ${state.normalText}`}
+                        >
+                            網頁設計
+                        </OutlineText>
+                    </StackContent>
+                </div>
+            </div>
         </Container>
     )
 }

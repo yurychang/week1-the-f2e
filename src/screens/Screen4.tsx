@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 import el from '@master/style-element.react'
 import OutlineText from 'components/OutlineText'
-import { ReactComponent as CoolEmoji } from 'images/cool-emoji.svg'
-import gsap from 'gsap'
+import { ReactComponent as WishEmoji } from 'images/wish-emoji.svg'
 
 const Card = el.div`w-[1010px] h-[737px] shadow-xl bg-white p-6 overflow-hidden`
 
@@ -17,31 +17,22 @@ const Section2 = () => {
     useEffect(() => {
         tl.current = gsap
             .timeline()
-            .to(containerRef.current, {
-                backgroundColor: '#FFF1AA',
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top top',
-                    end: '+=700',
-                    scrub: true,
-                },
-            })
             .to(cardRef.current, {
                 transform: 'matrix(1, 0, 0, 1, 0, 0)',
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'top top',
+                    start: 'top+=200 bottom',
                     end: '+=700',
                     scrub: true,
                 },
             })
             .to(emoji1Ref.current, {
-                translateY: -220,
+                translateY: -300,
                 opacity: 1,
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'top top',
-                    end: '+=700',
+                    start: 'top+=500 bottom',
+                    end: '+=400',
                     scrub: true,
                 },
             })
@@ -50,7 +41,7 @@ const Section2 = () => {
                 opacity: 1,
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'top+=300 top',
+                    start: 'top+=500 bottom',
                     end: '+=400',
                     scrub: true,
                 },
@@ -61,7 +52,7 @@ const Section2 = () => {
                 opacity: 1,
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'top+=300 top',
+                    start: 'top+=500 bottom',
                     end: '+=400',
                     scrub: true,
                 },
@@ -74,19 +65,19 @@ const Section2 = () => {
     return (
         <div
             ref={containerRef}
-            className="relative h-[calc(100vh+700px)] overflow-hidden bg-light"
+            className="relative h-screen overflow-hidden bg-primary-light"
         >
-            <CoolEmoji
+            <WishEmoji
                 ref={emoji1Ref}
                 width="220px"
                 className="absolute-x-center top-full z-10 drop-shadow-xl opacity-0"
             />
-            <CoolEmoji
+            <WishEmoji
                 ref={emoji2Ref}
                 width="200px"
                 className="absolute-x-center !left-[calc(50%-505px)] top-full z-10 rotate-[-30deg] drop-shadow-xl opacity-0"
             />
-            <CoolEmoji
+            <WishEmoji
                 ref={emoji3Ref}
                 width="200px"
                 className="absolute-x-center !left-[calc(50%+705px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
@@ -96,23 +87,21 @@ const Section2 = () => {
                     ref={cardRef}
                     style={{
                         transform:
-                            'translate(700px, 880px) matrix(1, -0.2, 0, 1, 0, 0)',
+                            'translate(200px, 0) matrix(1, -0.2, 0, 1, 0, 0)',
                     }}
                 >
                     <h2 className="absolute-center whitespace-nowrap text-[54px]">
-                        羨慕別人的酷酷網頁動畫？
+                        動畫技能樹太雜無從下手？
                     </h2>
-                    {Array(3)
-                        .fill(null)
-                        .map((_, i) => (
-                            <OutlineText
-                                key={i}
-                                strokeColor="black"
-                                className="text-[260px] leading-[0.9] opacity-30"
-                            >
-                                Cool Cool
-                            </OutlineText>
-                        ))}
+                    {['怎麼開始', '暈暈暈暈', '暈暈暈暈'].map((text, i) => (
+                        <OutlineText
+                            key={i}
+                            strokeColor="black"
+                            className="text-[220px] leading-[1.1] tracking-[19px] opacity-30"
+                        >
+                            {text}
+                        </OutlineText>
+                    ))}
                 </Card>
             </div>
         </div>

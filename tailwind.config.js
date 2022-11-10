@@ -1,10 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-const defaultColors = require('tailwindcss/colors')
 
 const colors = {
-    yellow: '#FFF1AA',
     dark: '#333',
-    light: '#Fafafa',
+    light: 'rgb(var(--color-light))',
+    'primary-light': '#FFF1AA',
     primary: '#F1CB04',
     'primary-focus': '#F1AF04',
 }

@@ -13,9 +13,7 @@ const dividerColor = {
 }
 
 const NavLink = el.a`${({ $theme }) =>
-    textColor[
-        $theme as BgColor
-    ]} opacity-70 transition-colors hover:text-primary-focus`
+    textColor[$theme as BgColor]} transition-colors hover:text-primary-focus`
 
 const Divider = el.a`h-[27px] w-[1px] transition-colors duration-500 ${({
     $theme,

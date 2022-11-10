@@ -1,9 +1,11 @@
+import classNames from 'classnames'
 import { HTMLAttributes, ElementType } from 'react'
 
 const OutlineText = ({
     as: Comp = 'div',
     strokeWidth = 1,
     strokeColor = '#000',
+    className,
     style,
     children,
     ...props
@@ -19,6 +21,7 @@ const OutlineText = ({
                 WebkitTextStrokeColor: strokeColor,
                 ...style,
             }}
+            className={classNames('text-transparent', className)}
             {...props}
         >
             {children}
