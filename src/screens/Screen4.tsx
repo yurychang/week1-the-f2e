@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
 import el from '@master/style-element.react'
 import OutlineText from 'components/OutlineText'
-import { ReactComponent as WishEmoji } from 'images/wish-emoji.svg'
+import { ReactComponent as DizzyEmoji } from 'images/dizzy-emoji.svg'
+import { ReactComponent as Star } from 'images/star.svg'
 
 const Card = el.div`w-[1010px] h-[737px] shadow-xl bg-white p-6 overflow-hidden`
 
-const Section2 = () => {
+const Screen4 = () => {
     const tl = useRef<gsap.core.Timeline | null>(null)
     const containerRef = useRef(null)
     const cardRef = useRef(null)
@@ -15,10 +15,18 @@ const Section2 = () => {
     const emoji3Ref = useRef(null)
 
     useEffect(() => {
+        ScrollTrigger.create({
+            trigger: containerRef.current,
+            start: 'top top',
+            end: '+=300',
+            pin: true,
+        })
+
         tl.current = gsap
             .timeline()
+            // in
             .to(cardRef.current, {
-                transform: 'matrix(1, 0, 0, 1, 0, 0)',
+                transform: '',
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: 'top+=200 bottom',
@@ -27,7 +35,7 @@ const Section2 = () => {
                 },
             })
             .to(emoji1Ref.current, {
-                translateY: -300,
+                translateY: -220,
                 opacity: 1,
                 scrollTrigger: {
                     trigger: containerRef.current,
@@ -48,7 +56,7 @@ const Section2 = () => {
             })
             .to(emoji3Ref.current, {
                 translateY: -700,
-                translateX: -300,
+                translateX: '-=100',
                 opacity: 1,
                 scrollTrigger: {
                     trigger: containerRef.current,
@@ -57,34 +65,98 @@ const Section2 = () => {
                     scrub: true,
                 },
             })
+            // out
+            .fromTo(
+                emoji2Ref.current,
+                { opacity: 1 },
+                {
+                    translateX: '-=600',
+                    opacity: 0,
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top top',
+                        end: '+=400',
+                        scrub: true,
+                    },
+                }
+            )
+            .fromTo(
+                emoji3Ref.current,
+                { opacity: 1 },
+                {
+                    translateX: '+=600',
+                    opacity: 0,
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top top',
+                        end: '+=400',
+                        scrub: true,
+                    },
+                }
+            )
+            .fromTo(
+                emoji1Ref.current,
+                { opacity: 1 },
+                {
+                    translateY: '-100vh',
+                    opacity: 0,
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top top',
+                        end: '+=400',
+                        scrub: true,
+                    },
+                }
+            )
+            .to(cardRef.current, {
+                translateY: '-100vh',
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top top',
+                    end: '+=400',
+                    scrub: true,
+                },
+            })
+        // .to(containerRef.current, {
+        //     backgroundColor: 'transparent',
+        //     opacity: 1,
+        //     scrollTrigger: {
+        //         trigger: containerRef.current,
+        //         start: 'top top',
+        //         end: '+=400',
+        //         scrub: true,
+        //     },
+        // })
         return () => {
             tl.current?.progress(0).kill()
         }
     }, [])
 
     return (
-        <div
-            ref={containerRef}
-            className="relative h-screen overflow-hidden bg-primary-light"
-        >
-            <WishEmoji
-                ref={emoji1Ref}
-                width="220px"
-                className="absolute-x-center top-full z-10 drop-shadow-xl opacity-0"
-            />
-            <WishEmoji
-                ref={emoji2Ref}
-                width="200px"
-                className="absolute-x-center !left-[calc(50%-505px)] top-full z-10 rotate-[-30deg] drop-shadow-xl opacity-0"
-            />
-            <WishEmoji
-                ref={emoji3Ref}
-                width="200px"
-                className="absolute-x-center !left-[calc(50%+705px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
-            />
-            <div className="absolute-x-center bottom-0">
+        <div ref={containerRef}>
+            <div
+                ref={containerRef}
+                className="relative overflow-hidden bg-primary-light"
+            >
+                <DizzyEmoji
+                    ref={emoji1Ref}
+                    width="220px"
+                    className="absolute-x-center top-full z-10 drop-shadow-xl opacity-0"
+                />
+                <Star
+                    ref={emoji2Ref}
+                    width="240px"
+                    className="absolute-x-center !left-[calc(50%-505px)] top-full z-10 drop-shadow-xl opacity-0"
+                />
+                <DizzyEmoji
+                    ref={emoji3Ref}
+                    width="200px"
+                    className="absolute-x-center !left-[calc(50%+605px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
+                />
                 <Card
                     ref={cardRef}
+                    className="mt-[300px] mx-auto"
                     style={{
                         transform:
                             'translate(200px, 0) matrix(1, -0.2, 0, 1, 0, 0)',
@@ -108,4 +180,4 @@ const Section2 = () => {
     )
 }
 
-export default Section2
+export default Screen4

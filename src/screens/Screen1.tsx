@@ -7,7 +7,6 @@ import {
 } from 'react'
 import { MdOutlineArrowDownward } from 'react-icons/md'
 import { BsPlay } from 'react-icons/bs'
-import gsap from 'gsap'
 import useGlobalEvent from 'beautiful-react-hooks/useGlobalEvent'
 import el from '@master/style-element.react'
 import useStore from 'store'
@@ -99,7 +98,7 @@ const animState: {
     },
 }
 
-const Section1 = () => {
+const Screen1 = () => {
     const tl = useRef<gsap.core.Timeline | null>(null)
     const setBgColor = useStore((state) => state.setBgColor)
 
@@ -238,4 +237,4 @@ const Section1 = () => {
     )
 }
 
-export default Section1
+export default Screen1

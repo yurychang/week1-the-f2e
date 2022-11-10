@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
 import el from '@master/style-element.react'
 import OutlineText from 'components/OutlineText'
 import { ReactComponent as WishEmoji } from 'images/wish-emoji.svg'
 
 const Card = el.div`w-[1010px] h-[737px] shadow-xl bg-white p-6 overflow-hidden`
 
-const Section2 = () => {
+const Screen3 = () => {
     const tl = useRef<gsap.core.Timeline | null>(null)
     const containerRef = useRef(null)
     const cardRef = useRef(null)
@@ -48,7 +47,7 @@ const Section2 = () => {
             })
             .to(emoji3Ref.current, {
                 translateY: -700,
-                translateX: -300,
+                translateX: '-=100',
                 opacity: 1,
                 scrollTrigger: {
                     trigger: containerRef.current,
@@ -65,7 +64,7 @@ const Section2 = () => {
     return (
         <div
             ref={containerRef}
-            className="relative h-screen overflow-hidden bg-primary-light"
+            className="relative overflow-hidden bg-primary-light"
         >
             <WishEmoji
                 ref={emoji1Ref}
@@ -80,34 +79,33 @@ const Section2 = () => {
             <WishEmoji
                 ref={emoji3Ref}
                 width="200px"
-                className="absolute-x-center !left-[calc(50%+705px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
+                className="absolute-x-center !left-[calc(50%+605px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
             />
-            <div className="absolute-x-center bottom-0">
-                <Card
-                    ref={cardRef}
-                    style={{
-                        transform:
-                            'translate(200px, 0) matrix(1, -0.2, 0, 1, 0, 0)',
-                    }}
-                >
-                    <h2 className="absolute-center whitespace-nowrap text-[54px]">
-                        滿足不了同事的許願？
-                    </h2>
-                    {Array(3)
-                        .fill(null)
-                        .map((_, i) => (
-                            <OutlineText
-                                key={i}
-                                strokeColor="black"
-                                className="text-[220px] leading-[1.1] opacity-30"
-                            >
-                                Wish Wish
-                            </OutlineText>
-                        ))}
-                </Card>
-            </div>
+            <Card
+                ref={cardRef}
+                className="mt-[300px] mx-auto"
+                style={{
+                    transform:
+                        'translate(200px, 0) matrix(1, -0.2, 0, 1, 0, 0)',
+                }}
+            >
+                <h2 className="absolute-center whitespace-nowrap text-[54px]">
+                    滿足不了同事的許願？
+                </h2>
+                {Array(3)
+                    .fill(null)
+                    .map((_, i) => (
+                        <OutlineText
+                            key={i}
+                            strokeColor="black"
+                            className="text-[220px] leading-[1.1] opacity-30"
+                        >
+                            Wish Wish
+                        </OutlineText>
+                    ))}
+            </Card>
         </div>
     )
 }
 
-export default Section2
+export default Screen3
