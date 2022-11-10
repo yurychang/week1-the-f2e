@@ -112,7 +112,7 @@ const Screen1 = () => {
 
     useLayoutEffect(() => {
         if (window.scrollY === 0) {
-            document.body.style.overflow = 'hidden'
+            document.body.style.overflowY = 'hidden'
         }
 
         tl.current = gsap
@@ -129,7 +129,7 @@ const Screen1 = () => {
             .call(() => setStep(3), [], 1.5)
             .call(
                 () => {
-                    document.body.style.overflow = 'auto'
+                    document.body.style.overflowY = 'auto'
                 },
                 [],
                 2

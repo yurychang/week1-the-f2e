@@ -18,8 +18,9 @@ const Screen4 = () => {
         ScrollTrigger.create({
             trigger: containerRef.current,
             start: 'top top',
-            end: '+=300',
+            end: '+=400',
             pin: true,
+            pinSpacing: false,
         })
 
         tl.current = gsap
@@ -118,64 +119,61 @@ const Screen4 = () => {
                     scrub: true,
                 },
             })
-        // .to(containerRef.current, {
-        //     backgroundColor: 'transparent',
-        //     opacity: 1,
-        //     scrollTrigger: {
-        //         trigger: containerRef.current,
-        //         start: 'top top',
-        //         end: '+=400',
-        //         scrub: true,
-        //     },
-        // })
+            .to(containerRef.current, {
+                backgroundColor: 'transparent',
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top top',
+                    end: '+=400',
+                    scrub: true,
+                },
+            })
         return () => {
             tl.current?.progress(0).kill()
         }
     }, [])
 
     return (
-        <div ref={containerRef}>
-            <div
-                ref={containerRef}
-                className="relative overflow-hidden bg-primary-light"
+        <div
+            ref={containerRef}
+            className="relative overflow-hidden bg-primary-light"
+        >
+            <DizzyEmoji
+                ref={emoji1Ref}
+                width="220px"
+                className="absolute-x-center top-full z-10 drop-shadow-xl opacity-0"
+            />
+            <Star
+                ref={emoji2Ref}
+                width="240px"
+                className="absolute-x-center !left-[calc(50%-505px)] top-full z-10 drop-shadow-xl opacity-0"
+            />
+            <DizzyEmoji
+                ref={emoji3Ref}
+                width="200px"
+                className="absolute-x-center !left-[calc(50%+605px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
+            />
+            <Card
+                ref={cardRef}
+                className="mt-[300px] mx-auto"
+                style={{
+                    transform:
+                        'translate(200px, 0) matrix(1, -0.2, 0, 1, 0, 0)',
+                }}
             >
-                <DizzyEmoji
-                    ref={emoji1Ref}
-                    width="220px"
-                    className="absolute-x-center top-full z-10 drop-shadow-xl opacity-0"
-                />
-                <Star
-                    ref={emoji2Ref}
-                    width="240px"
-                    className="absolute-x-center !left-[calc(50%-505px)] top-full z-10 drop-shadow-xl opacity-0"
-                />
-                <DizzyEmoji
-                    ref={emoji3Ref}
-                    width="200px"
-                    className="absolute-x-center !left-[calc(50%+605px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
-                />
-                <Card
-                    ref={cardRef}
-                    className="mt-[300px] mx-auto"
-                    style={{
-                        transform:
-                            'translate(200px, 0) matrix(1, -0.2, 0, 1, 0, 0)',
-                    }}
-                >
-                    <h2 className="absolute-center whitespace-nowrap text-[54px]">
-                        動畫技能樹太雜無從下手？
-                    </h2>
-                    {['怎麼開始', '暈暈暈暈', '暈暈暈暈'].map((text, i) => (
-                        <OutlineText
-                            key={i}
-                            strokeColor="black"
-                            className="text-[220px] leading-[1.1] tracking-[19px] opacity-30"
-                        >
-                            {text}
-                        </OutlineText>
-                    ))}
-                </Card>
-            </div>
+                <h2 className="absolute-center whitespace-nowrap text-[54px]">
+                    動畫技能樹太雜無從下手？
+                </h2>
+                {['怎麼開始', '暈暈暈暈', '暈暈暈暈'].map((text, i) => (
+                    <OutlineText
+                        key={i}
+                        strokeColor="black"
+                        className="text-[220px] leading-[1.1] tracking-[19px] opacity-30"
+                    >
+                        {text}
+                    </OutlineText>
+                ))}
+            </Card>
         </div>
     )
 }
