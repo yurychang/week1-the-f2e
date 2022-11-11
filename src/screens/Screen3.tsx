@@ -1,9 +1,6 @@
 import { useEffect, useRef } from 'react'
-import el from '@master/style-element.react'
-import OutlineText from 'components/OutlineText'
 import { ReactComponent as WishEmoji } from 'images/wish-emoji.svg'
-
-const Card = el.div`w-[1010px] h-[737px] shadow-xl bg-white p-6 overflow-hidden`
+import QuestionCard from 'components/QuestionCard'
 
 const Screen3 = () => {
     const tl = useRef<gsap.core.Timeline | null>(null)
@@ -81,29 +78,20 @@ const Screen3 = () => {
                 width="200px"
                 className="absolute-x-center !left-[calc(50%+605px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
             />
-            <Card
+            <div
                 ref={cardRef}
-                className="mt-[300px] mx-auto"
+                className="mt-[300px]"
                 style={{
                     transform:
                         'translate(200px, 0) matrix(1, -0.2, 0, 1, 0, 0)',
                 }}
             >
-                <h2 className="absolute-center whitespace-nowrap text-[54px]">
-                    滿足不了同事的許願？
-                </h2>
-                {Array(3)
-                    .fill(null)
-                    .map((_, i) => (
-                        <OutlineText
-                            key={i}
-                            strokeColor="black"
-                            className="text-[220px] leading-[1.1] opacity-30"
-                        >
-                            Wish Wish
-                        </OutlineText>
-                    ))}
-            </Card>
+                <QuestionCard
+                    question="滿足不了同事的許願？"
+                    bgText={<>Wish Wish Wish Wish Wish Wish</>}
+                    className="mx-auto"
+                />
+            </div>
         </div>
     )
 }

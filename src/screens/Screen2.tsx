@@ -1,9 +1,6 @@
 import { useEffect, useRef } from 'react'
-import el from '@master/style-element.react'
-import OutlineText from 'components/OutlineText'
 import { ReactComponent as CoolEmoji } from 'images/cool-emoji.svg'
-
-const Card = el.div`w-[1010px] h-[737px] shadow-xl bg-white p-6 overflow-hidden`
+import QuestionCard from 'components/QuestionCard'
 
 const Screen2 = () => {
     const tl = useRef<gsap.core.Timeline | null>(null)
@@ -87,28 +84,19 @@ const Screen2 = () => {
                 width="200px"
                 className="absolute-x-center !left-[calc(50%+605px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
             />
-            <Card
+            <div
                 ref={cardRef}
-                className="mt-[880px] mx-auto"
+                className="mt-[880px]"
                 style={{
                     transform: 'translate(200px) matrix(1, -0.2, 0, 1, 0, 0)',
                 }}
             >
-                <h2 className="absolute-center whitespace-nowrap text-[54px]">
-                    羨慕別人的酷酷網頁動畫？
-                </h2>
-                {Array(3)
-                    .fill(null)
-                    .map((_, i) => (
-                        <OutlineText
-                            key={i}
-                            strokeColor="black"
-                            className="text-[260px] leading-[0.9] opacity-30"
-                        >
-                            Cool Cool
-                        </OutlineText>
-                    ))}
-            </Card>
+                <QuestionCard
+                    question="羨慕別人的酷酷網頁動畫？"
+                    bgText={<>Cool Cool Cool Cool Cool Cool</>}
+                    className="mx-auto"
+                />
+            </div>
         </div>
     )
 }

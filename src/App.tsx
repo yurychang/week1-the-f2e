@@ -1,6 +1,6 @@
 import Header from 'components/Header'
 
-import Screen1 from 'screens/Screen1'
+import Banner from 'screens/Banner'
 import Screen2 from 'screens/Screen2'
 import Screen3 from 'screens/Screen3'
 import Screen4 from 'screens/Screen4'
@@ -12,7 +12,7 @@ function App() {
     return (
         <div>
             <Header />
-            <Screen1 />
+            <Banner />
             <Screen2 />
             <Screen3 />
             <Screen4 />

@@ -98,7 +98,7 @@ const animState: {
     },
 }
 
-const Screen1 = () => {
+const Banner = () => {
     const tl = useRef<gsap.core.Timeline | null>(null)
     const setBgColor = useStore((state) => state.setBgColor)
 
@@ -237,4 +237,4 @@ const Screen1 = () => {
     )
 }
 
-export default Screen1
+export default Banner

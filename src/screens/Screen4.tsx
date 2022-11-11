@@ -1,10 +1,7 @@
 import { useEffect, useRef } from 'react'
-import el from '@master/style-element.react'
-import OutlineText from 'components/OutlineText'
 import { ReactComponent as DizzyEmoji } from 'images/dizzy-emoji.svg'
 import { ReactComponent as Star } from 'images/star.svg'
-
-const Card = el.div`w-[1010px] h-[737px] shadow-xl bg-white p-6 overflow-hidden`
+import QuestionCard from 'components/QuestionCard'
 
 const Screen4 = () => {
     const tl = useRef<gsap.core.Timeline | null>(null)
@@ -153,27 +150,20 @@ const Screen4 = () => {
                 width="200px"
                 className="absolute-x-center !left-[calc(50%+605px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
             />
-            <Card
+            <div
                 ref={cardRef}
-                className="mt-[300px] mx-auto"
+                className="mt-[300px]"
                 style={{
                     transform:
                         'translate(200px, 0) matrix(1, -0.2, 0, 1, 0, 0)',
                 }}
             >
-                <h2 className="absolute-center whitespace-nowrap text-[54px]">
-                    動畫技能樹太雜無從下手？
-                </h2>
-                {['怎麼開始', '暈暈暈暈', '暈暈暈暈'].map((text, i) => (
-                    <OutlineText
-                        key={i}
-                        strokeColor="black"
-                        className="text-[220px] leading-[1.1] tracking-[19px] opacity-30"
-                    >
-                        {text}
-                    </OutlineText>
-                ))}
-            </Card>
+                <QuestionCard
+                    question="動畫技能樹太雜無從下手？"
+                    bgText={<>怎麼開始暈暈暈暈暈暈暈暈</>}
+                    className="mx-auto"
+                />
+            </div>
         </div>
     )
 }
