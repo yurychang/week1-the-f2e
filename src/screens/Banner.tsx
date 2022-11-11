@@ -5,6 +5,7 @@ import {
     useRef,
     useLayoutEffect,
 } from 'react'
+import gsap from 'gsap'
 import { MdOutlineArrowDownward } from 'react-icons/md'
 import { BsPlay } from 'react-icons/bs'
 import useGlobalEvent from 'beautiful-react-hooks/useGlobalEvent'

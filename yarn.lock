@@ -6276,7 +6276,7 @@ __metadata:
     classnames: ^2.3.2
     daisyui: ^2.38.1
     eslint: ^8.26.0
-    gsap: ./gsap-bonus.tgz
+    gsap: 3.11.2
     husky: ^8.0.0
     lint-staged: ^13.0.3
     postcss: ^8.4.18
@@ -6848,10 +6848,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gsap@file:./gsap-bonus.tgz::locator=f2e-event-website%40workspace%3A.":
-  version: 3.11.3
-  resolution: "gsap@file:./gsap-bonus.tgz::locator=f2e-event-website%40workspace%3A."
-  checksum: 59e57ff8fc4906486ebddc93e762d140a010b90204c4da9d27835df1d5e160bb513fc7f12a94c137c7a7ab218dc7d8b8c831b5ad9f7f9d55f5482b07484fd41c
+"gsap@npm:3.11.2":
+  version: 3.11.2
+  resolution: "gsap@npm:3.11.2"
+  checksum: 119bf2e06a81daedf18aba92c6d8a2113398d59befc665caf0c27a7d32ddaa03d542db78d0733fd46872c0c3fc45e7163c2731d4c989b055d73da2e036076e10
   languageName: node
   linkType: hard
 

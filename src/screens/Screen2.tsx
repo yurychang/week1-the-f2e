@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 import { ReactComponent as CoolEmoji } from 'images/cool-emoji.svg'
 import QuestionCard from 'components/QuestionCard'
 

@@ -1,5 +1,7 @@
-import Header from 'components/Header'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
+import Header from 'components/Header'
 import Banner from 'screens/Banner'
 import Screen2 from 'screens/Screen2'
 import Screen3 from 'screens/Screen3'
