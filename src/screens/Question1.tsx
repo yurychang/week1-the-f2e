@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import { ReactComponent as CoolEmoji } from 'images/cool-emoji.svg'
+import { ReactComponent as CoolEmoji } from 'assets/cool-emoji.svg'
 import QuestionCard from 'components/QuestionCard'
 
-const Screen2 = () => {
+const Question1 = () => {
     const tl = useRef<gsap.core.Timeline | null>(null)
     const containerRef = useRef(null)
     const cardRef = useRef(null)
@@ -78,12 +78,12 @@ const Screen2 = () => {
             <CoolEmoji
                 ref={emoji2Ref}
                 width="200px"
-                className="absolute-x-center !left-[calc(50%-505px)] top-full z-10 rotate-[-30deg] drop-shadow-xl opacity-0"
+                className="absolute left-[calc(50%-605px)] top-full z-10 rotate-[-30deg] drop-shadow-xl opacity-0"
             />
             <CoolEmoji
                 ref={emoji3Ref}
                 width="200px"
-                className="absolute-x-center !left-[calc(50%+605px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
+                className="absolute left-[calc(50%+505px)] top-full z-10 rotate-[20deg] drop-shadow-xl opacity-0"
             />
             <div
                 ref={cardRef}
@@ -102,4 +102,4 @@ const Screen2 = () => {
     )
 }
 
-export default Screen2
+export default Question1
