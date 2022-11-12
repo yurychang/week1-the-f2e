@@ -4,7 +4,6 @@ import { ReactComponent as WishEmoji } from 'assets/wish-emoji.svg'
 import QuestionCard from 'components/QuestionCard'
 
 const Question2 = () => {
-    const tl = useRef<gsap.core.Timeline | null>(null)
     const containerRef = useRef(null)
     const cardRef = useRef(null)
     const emoji1Ref = useRef(null)
@@ -12,51 +11,42 @@ const Question2 = () => {
     const emoji3Ref = useRef(null)
 
     useEffect(() => {
-        tl.current = gsap
-            .timeline()
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top+=200 bottom',
+                end: 'bottom bottom',
+                scrub: true,
+            },
+        })
             .to(cardRef.current, {
                 transform: 'matrix(1, 0, 0, 1, 0, 0)',
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=200 bottom',
-                    end: '+=700',
-                    scrub: true,
-                },
             })
-            .to(emoji1Ref.current, {
-                translateY: -300,
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=500 bottom',
-                    end: '+=400',
-                    scrub: true,
+            .to(
+                emoji1Ref.current,
+                {
+                    translateY: -300,
+                    opacity: 1,
                 },
-            })
-            .to(emoji2Ref.current, {
-                translateY: -600,
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=500 bottom',
-                    end: '+=400',
-                    scrub: true,
+                '<'
+            )
+            .to(
+                emoji2Ref.current,
+                {
+                    translateY: -600,
+                    opacity: 1,
                 },
-            })
-            .to(emoji3Ref.current, {
-                translateY: -700,
-                translateX: '-=100',
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=500 bottom',
-                    end: '+=400',
-                    scrub: true,
+                '<'
+            )
+            .to(
+                emoji3Ref.current,
+                {
+                    translateY: -700,
+                    translateX: '-=100',
+                    opacity: 1,
                 },
-            })
-        return () => {
-            tl.current?.progress(0).kill()
-        }
+                '<'
+            )
     }, [])
 
     return (

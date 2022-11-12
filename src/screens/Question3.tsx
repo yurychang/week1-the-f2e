@@ -5,7 +5,6 @@ import { ReactComponent as DizzyEmoji } from 'assets/dizzy-emoji.svg'
 import { ReactComponent as Star } from 'assets/star.svg'
 
 const Question3 = () => {
-    const tl = useRef<gsap.core.Timeline | null>(null)
     const containerRef = useRef(null)
     const cardRef = useRef(null)
     const emoji1Ref = useRef(null)
@@ -13,111 +12,100 @@ const Question3 = () => {
     const emoji3Ref = useRef(null)
 
     useEffect(() => {
-        tl.current = gsap
-            .timeline()
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top+=300 bottom',
+                end: 'bottom bottom',
+                scrub: true,
+            },
+        })
             // in
             .to(cardRef.current, {
                 transform: '',
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=200 bottom',
-                    end: '+=700',
-                    scrub: true,
-                },
             })
-            .to(emoji1Ref.current, {
-                translateY: -240,
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=500 bottom',
-                    end: '+=400',
-                    scrub: true,
+            .to(
+                emoji1Ref.current,
+                {
+                    translateY: -240,
+                    opacity: 1,
                 },
-            })
-            .to(emoji2Ref.current, {
-                translateY: -600,
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=500 bottom',
-                    end: '+=400',
-                    scrub: true,
+                '<'
+            )
+            .to(
+                emoji2Ref.current,
+                {
+                    translateY: -600,
+                    opacity: 1,
                 },
-            })
-            .to(emoji3Ref.current, {
-                translateY: -700,
-                translateX: '-=100',
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=500 bottom',
-                    end: '+=400',
-                    scrub: true,
+                '<'
+            )
+            .to(
+                emoji3Ref.current,
+                {
+                    translateY: -700,
+                    translateX: '-=100',
+                    opacity: 1,
                 },
-            })
+                '<'
+            )
 
         // out
-        const leaveTrigger = {
-            trigger: containerRef.current,
-            start: 'bottom bottom',
-            end: 'bottom bottom',
-            toggleActions: 'play none reverse none',
-        }
-
-        gsap.to(cardRef.current, {
-            scrollTrigger: leaveTrigger,
-            y: -100,
-            opacity: 0,
-            duration: 0.25,
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'bottom bottom',
+                end: '+=400',
+                toggleActions: 'play none reverse none',
+                scrub: true,
+                pin: true,
+                pinSpacing: false,
+                snap: {
+                    snapTo: [0, 1],
+                    duration: 0.4,
+                    delay: 0.2,
+                    ease: 'power1.inOut',
+                },
+            },
         })
-
-        gsap.fromTo(
-            emoji1Ref.current,
-            { opacity: 1 },
-            {
-                scrollTrigger: leaveTrigger,
+            .to(cardRef.current, {
                 translateY: '-100vh',
                 opacity: 0,
-                duration: 0.25,
-            }
-        )
-        gsap.fromTo(
-            emoji2Ref.current,
-            { opacity: 1 },
-            {
-                scrollTrigger: leaveTrigger,
-                translateX: '-=600',
-                opacity: 0,
-                duration: 0.25,
-            }
-        )
-        gsap.fromTo(
-            emoji3Ref.current,
-            { opacity: 1 },
-            {
-                scrollTrigger: leaveTrigger,
-                translateX: '+=600',
-                opacity: 0,
-                duration: 0.25,
-            }
-        )
-
-        gsap.to(containerRef.current, {
-            backgroundColor: 'transparent',
-            duration: 0.25,
-            scrollTrigger: { ...leaveTrigger, toggleClass: 'hidden' },
-        })
-
-        return () => {
-            tl.current?.progress(0).kill()
-        }
+            })
+            .fromTo(
+                emoji1Ref.current,
+                { opacity: 1 },
+                {
+                    translateY: '-100vh',
+                    opacity: 0,
+                },
+                '<'
+            )
+            .fromTo(
+                emoji2Ref.current,
+                { opacity: 1 },
+                {
+                    translateX: '-=600',
+                    opacity: 0,
+                },
+                '<'
+            )
+            .fromTo(
+                emoji3Ref.current,
+                { opacity: 1 },
+                {
+                    translateX: '+=600',
+                    opacity: 0,
+                },
+                '<'
+            )
+            .to(containerRef.current, { backgroundColor: 'transparent' }, '<')
     }, [])
 
     return (
         <div
             ref={containerRef}
-            className="relative pt-[300px] pb-[150px] overflow-hidden bg-primary-light"
+            className="relative min-h-screen pt-[300px] pb-[100px] overflow-hidden bg-primary-light"
         >
             <DizzyEmoji
                 ref={emoji1Ref}

@@ -13,56 +13,49 @@ const Question1 = () => {
 
     useEffect(() => {
         tl.current = gsap
-            .timeline()
+            .timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: true,
+                },
+            })
             .to(containerRef.current, {
                 backgroundColor: '#FFF1AA',
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top top',
-                    end: '+=700',
-                    scrub: true,
-                },
             })
-            .to(cardRef.current, {
-                transform: 'matrix(1, 0, 0, 1, 0, 0)',
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top top',
-                    end: '+=700',
-                    scrub: true,
+            .to(
+                cardRef.current,
+                {
+                    transform: 'matrix(1, 0, 0, 1, 0, 0)',
                 },
-            })
-            .to(emoji1Ref.current, {
-                translateY: -220,
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top top',
-                    end: '+=700',
-                    scrub: true,
+                '<'
+            )
+            .to(
+                emoji1Ref.current,
+                {
+                    translateY: -220,
+                    opacity: 1,
                 },
-            })
-            .to(emoji2Ref.current, {
-                translateY: -600,
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=300 top',
-                    end: '+=400',
-                    scrub: true,
+                '<'
+            )
+            .to(
+                emoji2Ref.current,
+                {
+                    translateY: -600,
+                    opacity: 1,
                 },
-            })
-            .to(emoji3Ref.current, {
-                translateY: -700,
-                translateX: '-=100',
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=300 top',
-                    end: '+=400',
-                    scrub: true,
+                '<'
+            )
+            .to(
+                emoji3Ref.current,
+                {
+                    translateY: -700,
+                    translateX: '-=100',
+                    opacity: 1,
                 },
-            })
+                '<'
+            )
         return () => {
             tl.current?.progress(0).kill()
         }
