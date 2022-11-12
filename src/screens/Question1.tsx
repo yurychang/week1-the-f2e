@@ -62,7 +62,10 @@ const Question1 = () => {
     }, [])
 
     return (
-        <div ref={containerRef} className="relative overflow-hidden bg-light">
+        <section
+            ref={containerRef}
+            className="relative overflow-hidden bg-light"
+        >
             <CoolEmoji
                 ref={emoji1Ref}
                 width="220px"
@@ -91,7 +94,7 @@ const Question1 = () => {
                     className="mx-auto"
                 />
             </div>
-        </div>
+        </section>
     )
 }
 

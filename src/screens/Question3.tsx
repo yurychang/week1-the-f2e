@@ -61,13 +61,14 @@ const Question3 = () => {
                 pin: true,
                 pinSpacing: false,
                 snap: {
-                    snapTo: [0, 1],
+                    snapTo: 'labels',
                     duration: 0.4,
                     delay: 0.2,
                     ease: 'power1.inOut',
                 },
             },
         })
+            .addLabel('start')
             .to(cardRef.current, {
                 translateY: '-100vh',
                 opacity: 0,
@@ -100,12 +101,13 @@ const Question3 = () => {
                 '<'
             )
             .to(containerRef.current, { backgroundColor: 'transparent' }, '<')
+            .addLabel('end')
     }, [])
 
     return (
-        <div
+        <section
             ref={containerRef}
-            className="relative min-h-screen pt-[300px] pb-[100px] overflow-hidden bg-primary-light"
+            className="relative min-h-screen pt-[300px] pb-[100px] overflow-hidden bg-secondary"
         >
             <DizzyEmoji
                 ref={emoji1Ref}
@@ -135,7 +137,7 @@ const Question3 = () => {
                     className="mx-auto"
                 />
             </div>
-        </div>
+        </section>
     )
 }
 

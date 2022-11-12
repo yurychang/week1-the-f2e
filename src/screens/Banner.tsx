@@ -14,7 +14,7 @@ import useStore from 'store'
 import StackContent from 'components/StackContent'
 import OutlineText from 'components/OutlineText'
 
-const Container = el.div`relative h-screen select-none transition-colors duration-[.75s]`
+const Container = el.section`relative h-screen select-none transition-colors duration-[.75s]`
 
 const GridLine = el.div`absolute top-[3%] bottom-[3%] left-0 w-[1px] bg-white opacity-30 transition-transform duration-500`
 

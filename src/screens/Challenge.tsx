@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
 import OutlineText from 'components/OutlineText'
 import { ReactComponent as Horray } from 'assets/horray.svg'
 import useStore from 'store'
@@ -20,21 +19,18 @@ const Challenge = () => {
             scrollTrigger: {
                 trigger: containerRef.current,
                 pin: true,
-                pinSpacing: false,
                 scrub: true,
                 onEnter: () => setBgColor('dark'),
                 onLeaveBack: () => setBgColor('light'),
             },
         })
-            .to(text1Ref.current, {}, 2)
-            .addLabel('start')
             .to(
                 text1Ref.current,
                 {
                     translateX: 0,
                     opacity: 1,
                 },
-                2
+                1.5
             )
             .to(
                 text2Ref.current,
@@ -52,7 +48,6 @@ const Challenge = () => {
                 },
                 '<'
             )
-            .addLabel('mid')
             .to(overlayRef.current, {
                 opacity: 1,
             })
@@ -64,12 +59,11 @@ const Challenge = () => {
                 },
                 '<'
             )
-            .addLabel('end')
     }, [setBgColor])
 
     return (
         <>
-            <div
+            <section
                 ref={containerRef}
                 className="relative h-screen w-screen flex flex-col justify-center bg-dark"
             >
@@ -132,9 +126,7 @@ const Challenge = () => {
                         共同設計出接地氣的網頁互動挑戰關卡
                     </div>
                 </div>
-            </div>
-            <div className="h-screen"></div>
-            <div className="h-screen"></div>
+            </section>
         </>
     )
 }

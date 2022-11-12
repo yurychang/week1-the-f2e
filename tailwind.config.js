@@ -3,7 +3,9 @@
 const colors = {
     dark: '#333',
     light: 'rgb(var(--color-light))',
-    'primary-light': '#FFF1AA',
+    secondary: '#FFF1AA',
+    'secondary-focus': '#F1CB04',
+    'secondary-content': '#000000',
     primary: '#F1CB04',
     'primary-focus': '#F1AF04',
 }
