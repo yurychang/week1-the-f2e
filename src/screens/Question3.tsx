@@ -58,6 +58,7 @@ const Question3 = () => {
                         toggleActions: 'play none reverse none',
                         scrub: true,
                         pin: true,
+                        pinSpacing: false,
                         onEnter: () => setBgColor('dark'),
                         onLeaveBack: () => setBgColor('light'),
                         // end: 'bottom bottom',
@@ -181,8 +182,9 @@ const Question3 = () => {
                     />
                 </div>
             </section>
-            <div className="-mt-[100vh] -mb-[100vh]">
+            <div className="-mt-[100vh]">
                 <Challenge></Challenge>
+                <div className="h-screen"></div>
             </div>
         </div>
     )
