@@ -112,9 +112,7 @@ const Banner = () => {
     const state = animState[step as keyof typeof animState]
 
     useLayoutEffect(() => {
-        if (window.scrollY === 0) {
-            document.body.style.overflowY = 'hidden'
-        }
+        document.body.style.overflowY = 'hidden'
 
         tl.current = gsap
             .timeline({ paused: true })
@@ -158,11 +156,6 @@ const Banner = () => {
             tl.current?.progress(0).kill()
         }
     }, [setBgColor])
-
-    const onGlobalWheel = useGlobalEvent('wheel', { passive: false })
-    onGlobalWheel((e) => {
-        step !== 3 && window.scrollY === 0 && e.preventDefault()
-    })
 
     const bgLines = Array(5)
         .fill(undefined)

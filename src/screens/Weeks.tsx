@@ -6,12 +6,7 @@ import 'swiper/css'
 const Weeks = () => {
     return (
         <div className="relative z-10 h-screen pt-[90px] px-12 bg-dark">
-            <Swiper
-                spaceBetween={24}
-                slidesPerView={'auto'}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
-            >
+            <Swiper spaceBetween={24} slidesPerView={'auto'}>
                 <SwiperSlide className="!w-[560px]">
                     <IntroCard
                         title="Week 1"

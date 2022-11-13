@@ -7,10 +7,11 @@ import Banner from 'screens/Banner'
 import Question1 from 'screens/Question1'
 import Question2 from 'screens/Question2'
 import Question3 from 'screens/Question3'
-import Challenge from 'screens/Challenge'
 import Weeks from 'screens/Weeks'
 import Introduction from 'screens/Introduction'
 import Award from 'screens/Award'
+import SignUp from 'screens/SignUp'
+import Sponsor from 'screens/Sponsor'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -28,6 +29,8 @@ function App() {
             <Weeks />
             <Introduction />
             <Award></Award>
+            <SignUp></SignUp>
+            <Sponsor></Sponsor>
         </>
     )
 }
