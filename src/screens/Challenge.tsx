@@ -1,74 +1,10 @@
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
 import OutlineText from 'components/OutlineText'
-import { ReactComponent as Horray } from 'assets/horray.svg'
-import useStore from 'store'
+import { ReactComponent as Hooray } from 'assets/hooray.svg'
 
-const Challenge = ({ tl }: { tl?: gsap.core.Timeline }) => {
-    const setBgColor = useStore((s) => s.setBgColor)
-
-    const containerRef = useRef(null)
-    const text1Ref = useRef(null)
-    const text2Ref = useRef(null)
-    const horrayRef = useRef(null)
-    const page2Ref = useRef(null)
-    const overlayRef = useRef(null)
-
-    useEffect(() => {
-        // const cTl = gsap
-        //     .timeline({
-        //         // scrollTrigger: {
-        //         //     trigger: containerRef.current,
-        //         //     pin: true,
-        //         //     scrub: true,
-        //         //     onEnter: () => setBgColor('dark'),
-        //         //     onLeaveBack: () => setBgColor('light'),
-        //         // },
-        //     })
-        if (tl) {
-            tl.to(text1Ref.current, {
-                translateX: 0,
-                opacity: 1,
-            })
-                .to(
-                    text2Ref.current,
-                    {
-                        translateX: 0,
-                        opacity: 1,
-                    },
-                    '<'
-                )
-                .to(
-                    horrayRef.current,
-                    {
-                        translateY: 0,
-                        opacity: 1,
-                    },
-                    '<'
-                )
-                .to(overlayRef.current, {
-                    opacity: 1,
-                })
-                .to(
-                    page2Ref.current,
-                    {
-                        translateY: '-100%',
-                        opacity: 1,
-                    },
-                    '<'
-                )
-        }
-        // tl?.add(cTl)
-
-        // return () => cTl.progress(0).kill()
-    }, [setBgColor, tl])
-
+const Challenge = () => {
     return (
-        <>
-            <section
-                ref={containerRef}
-                className="relative h-screen w-screen flex flex-col justify-center -translate-y-full bg-dark"
-            >
+        <div data-anim="pin-container">
+            <section className="relative h-screen w-screen flex flex-col justify-center bg-dark">
                 <OutlineText
                     strokeColor="hsl(var(--p))"
                     className="text-center text-[270px] font-bold"
@@ -83,7 +19,7 @@ const Challenge = ({ tl }: { tl?: gsap.core.Timeline }) => {
                 </div>
                 <div className="relative mt-[70px] flex justify-center items-center">
                     <div
-                        ref={text1Ref}
+                        data-anim="ui-designer"
                         className="w-[610px] text-right text-[122px] font-bold -translate-x-full opacity-0"
                     >
                         <span className=" mr-5 text-primary">UI</span>
@@ -91,12 +27,12 @@ const Challenge = ({ tl }: { tl?: gsap.core.Timeline }) => {
                             設計師
                         </OutlineText>
                     </div>
-                    <Horray
-                        ref={horrayRef}
+                    <Hooray
+                        data-anim="hooray"
                         className="mx-4 translate-y-full opacity-0"
                     />
                     <div
-                        ref={text2Ref}
+                        data-anim="f2e"
                         className="text-[122px] font-bold translate-x-full opacity-0"
                     >
                         <span className=" text-primary">前端</span>
@@ -106,12 +42,14 @@ const Challenge = ({ tl }: { tl?: gsap.core.Timeline }) => {
                     </div>
                 </div>
                 <div
-                    ref={overlayRef}
+                    data-anim="challenge-bg"
                     className="absolute inset-0 bg-dark opacity-0"
                 ></div>
+            </section>
+            <section>
                 <div
-                    ref={page2Ref}
-                    className="absolute h-screen w-screen top-full z-20 flex flex-col justify-center opacity-0"
+                    data-anim="challenge-content"
+                    className="h-screen w-screen flex flex-col justify-center opacity-0"
                 >
                     <OutlineText
                         strokeColor="hsl(var(--p))"
@@ -129,7 +67,7 @@ const Challenge = ({ tl }: { tl?: gsap.core.Timeline }) => {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 

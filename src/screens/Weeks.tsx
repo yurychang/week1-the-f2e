@@ -5,7 +5,7 @@ const Card = element(IntroCard)`w-[560px] shrink-0`
 
 const Weeks = () => {
     return (
-        <div className="h-screen pt-[90px] px-12 flex gap-6 items-center bg-dark">
+        <div className="z-10 h-screen pt-[90px] px-12 flex gap-6 items-center bg-dark">
             <Card
                 title="Week 1"
                 desc="The F2E 活動網站設計"

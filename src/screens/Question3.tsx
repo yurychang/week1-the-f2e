@@ -1,127 +1,165 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import QuestionCard from 'components/QuestionCard'
 import { ReactComponent as DizzyEmoji } from 'assets/dizzy-emoji.svg'
 import { ReactComponent as Star } from 'assets/star.svg'
+import useStore from 'store'
 import Challenge from './Challenge'
 
 const Question3 = () => {
     const containerRef = useRef(null)
+    const qContainerRef = useRef(null)
     const cardRef = useRef(null)
     const emoji1Ref = useRef(null)
     const emoji2Ref = useRef(null)
     const emoji3Ref = useRef(null)
 
-    const [tl, setTl] = useState<gsap.core.Timeline>()
+    const setBgColor = useStore((s) => s.setBgColor)
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top+=300 bottom',
-                    end: 'bottom bottom',
-                    scrub: true,
-                },
-            })
+            if (containerRef.current) {
                 // in
-                .to(cardRef.current, {
-                    transform: '',
-                })
-                .to(
-                    emoji1Ref.current,
-                    {
-                        translateY: -240,
-                        opacity: 1,
-                    },
-                    '<'
-                )
-                .to(
-                    emoji2Ref.current,
-                    {
-                        translateY: -600,
-                        opacity: 1,
-                    },
-                    '<'
-                )
-                .to(
-                    emoji3Ref.current,
-                    {
-                        translateY: -700,
-                        translateX: '-=100',
-                        opacity: 1,
-                    },
-                    '<'
-                )
-
-            // out
-            const tl = gsap
-                .timeline({
+                gsap.timeline({
                     scrollTrigger: {
-                        trigger: containerRef.current,
-                        start: 'top+=1137 bottom',
+                        trigger: qContainerRef.current,
+                        start: 'top+=300 bottom',
                         end: 'bottom bottom',
+                        scrub: true,
+                    },
+                })
+                    .to(cardRef.current, {
+                        transform: '',
+                    })
+                    .to(
+                        emoji1Ref.current,
+                        {
+                            translateY: -240,
+                            opacity: 1,
+                        },
+                        '<'
+                    )
+                    .to(
+                        emoji2Ref.current,
+                        {
+                            translateY: -600,
+                            opacity: 1,
+                        },
+                        '<'
+                    )
+                    .to(
+                        emoji3Ref.current,
+                        {
+                            translateY: -700,
+                            translateX: '-=100',
+                            opacity: 1,
+                        },
+                        '<'
+                    )
+                // out
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '[data-anim="pin-container"]',
                         toggleActions: 'play none reverse none',
                         scrub: true,
                         pin: true,
-                        // pinSpacing: false,
-                        snap: {
-                            snapTo: 'labels',
-                            duration: 0.4,
-                            delay: 0.2,
-                            ease: 'power1.inOut',
-                        },
+                        onEnter: () => setBgColor('dark'),
+                        onLeaveBack: () => setBgColor('light'),
+                        // end: 'bottom bottom',
+                        // snap: {
+                        //     snapTo: 'labels',
+                        //     duration: 0.4,
+                        //     delay: 0.2,
+                        //     ease: 'power1.inOut',
+                        // },
                     },
                 })
-                .addLabel('start')
-                .to(cardRef.current, {
-                    translateY: '-100vh',
-                    opacity: 0,
-                })
-                .fromTo(
-                    emoji1Ref.current,
-                    { opacity: 1 },
-                    {
+                    .to(cardRef.current, {
                         translateY: '-100vh',
                         opacity: 0,
-                    },
-                    '<'
-                )
-                .fromTo(
-                    emoji2Ref.current,
-                    { opacity: 1 },
-                    {
-                        translateX: '-=600',
-                        opacity: 0,
-                    },
-                    '<'
-                )
-                .fromTo(
-                    emoji3Ref.current,
-                    { opacity: 1 },
-                    {
-                        translateX: '+=600',
-                        opacity: 0,
-                    },
-                    '<'
-                )
-                .to(
-                    containerRef.current,
-                    { backgroundColor: 'transparent' },
-                    '<'
-                )
-                .addLabel('end')
-            setTl(tl)
-        })
+                    })
+                    .fromTo(
+                        emoji1Ref.current,
+                        { opacity: 1 },
+                        {
+                            translateY: '-100vh',
+                            opacity: 0,
+                        },
+                        '<'
+                    )
+                    .fromTo(
+                        emoji2Ref.current,
+                        { opacity: 1 },
+                        {
+                            translateX: '-=600',
+                            opacity: 0,
+                        },
+                        '<'
+                    )
+                    .fromTo(
+                        emoji3Ref.current,
+                        { opacity: 1 },
+                        {
+                            translateX: '+=600',
+                            opacity: 0,
+                        },
+                        '<'
+                    )
+                    .to(
+                        '[data-anim="question3-bg"]',
+                        { backgroundColor: 'transparent' },
+                        '<'
+                    )
+                    .to('[data-anim="ui-designer"]', {
+                        translateX: 0,
+                        opacity: 1,
+                    })
+                    .to(
+                        '[data-anim="f2e"]',
+                        {
+                            translateX: 0,
+                            opacity: 1,
+                        },
+                        '<'
+                    )
+                    .to(
+                        '[data-anim="hooray"]',
+                        {
+                            translateY: 0,
+                            opacity: 1,
+                        },
+                        '<'
+                    )
+                    .to('[data-anim="challenge-bg"]', {
+                        opacity: 1,
+                    })
+                    .to(
+                        '[data-anim="challenge-content"]',
+                        {
+                            translateY: '-100%',
+                            opacity: 1,
+                        },
+                        '<'
+                    )
+            }
+        }, containerRef.current as any)
 
         return () => ctx.revert()
-    }, [])
+    }, [setBgColor])
 
     return (
-        <>
+        <div
+            ref={containerRef}
+            data-anim="question3-container"
+            className="relative"
+        >
+            <div
+                data-anim="question3-bg"
+                className="absolute inset-0 z-10 bg-secondary"
+            ></div>
             <section
-                ref={containerRef}
-                className="relative z-10 min-h-screen pt-[300px] pb-[100px] overflow-hidden bg-secondary"
+                ref={qContainerRef}
+                className="relative z-20 min-h-screen pt-[300px] pb-[100px] overflow-hidden"
             >
                 <DizzyEmoji
                     ref={emoji1Ref}
@@ -152,8 +190,10 @@ const Question3 = () => {
                     />
                 </div>
             </section>
-            <Challenge tl={tl}></Challenge>
-        </>
+            <div className="-mt-[100vh] -mb-[100vh]">
+                <Challenge></Challenge>
+            </div>
+        </div>
     )
 }
 
