@@ -9,6 +9,8 @@ import Question2 from 'screens/Question2'
 import Question3 from 'screens/Question3'
 import Challenge from 'screens/Challenge'
 import Weeks from 'screens/Weeks'
+import Introduction from 'screens/Introduction'
+import Award from 'screens/Award'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -24,6 +26,8 @@ function App() {
             <Question2 />
             <Question3 />
             <Weeks />
+            <Introduction />
+            <Award></Award>
         </>
     )
 }

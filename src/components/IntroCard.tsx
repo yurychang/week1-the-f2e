@@ -31,7 +31,7 @@ const IntroCard = ({
                 {labels.map((t, i) => (
                     <div
                         key={i}
-                        className="border rounded-sm text-[40px] text-light"
+                        className="px-1 border rounded-sm text-[40px] text-light"
                     >
                         #{t}
                     </div>
