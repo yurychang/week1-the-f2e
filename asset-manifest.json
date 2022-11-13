@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/week1-the-f2e/static/css/main.aa2c94b0.css",
+    "main.js": "/week1-the-f2e/static/js/main.6a58bf88.js",
+    "static/js/787.5181838f.chunk.js": "/week1-the-f2e/static/js/787.5181838f.chunk.js",
+    "static/media/hooray.svg": "/week1-the-f2e/static/media/hooray.3c85d02c9ce69f06f9f30a9c7315d392.svg",
+    "static/media/block-studio.png": "/week1-the-f2e/static/media/block-studio.1a6d158253d3c5546c52.png",
+    "static/media/wish-emoji.svg": "/week1-the-f2e/static/media/wish-emoji.6b65784ad4050299acddfbf69200a74c.svg",
+    "static/media/well-done.svg": "/week1-the-f2e/static/media/well-done.d71674bf9553ec64e6dbb10a5284c28a.svg",
+    "static/media/the-f2e.svg": "/week1-the-f2e/static/media/the-f2e.22ce171f383cf7e771fd2f04842d2946.svg",
+    "static/media/cool-emoji.svg": "/week1-the-f2e/static/media/cool-emoji.3e1ce3f929b0a344d3a7c4af51858ecc.svg",
+    "static/media/dizzy-emoji.svg": "/week1-the-f2e/static/media/dizzy-emoji.6563731fe3fba81528f78b05fc0b2303.svg",
+    "static/media/star.svg": "/week1-the-f2e/static/media/star.2cf67a592fdcecac4c9d396446aa8dad.svg",
+    "index.html": "/week1-the-f2e/index.html",
+    "static/media/week3-cycle.svg": "/week1-the-f2e/static/media/week3-cycle.e4af1c99a9fd7a14ea9664ad49b2a3d8.svg",
+    "static/media/week1-arrow-up.svg": "/week1-the-f2e/static/media/week1-arrow-up.5fdaf33cd4765103697cf52f99c15583.svg",
+    "static/media/week1-arrow-down.svg": "/week1-the-f2e/static/media/week1-arrow-down.9f701b123080906c3071b09eb05be818.svg",
+    "static/media/week3-right.svg": "/week1-the-f2e/static/media/week3-right.ea6b7057acd5be12c16ecbf1b29af8aa.svg",
+    "static/media/week2-pen.svg": "/week1-the-f2e/static/media/week2-pen.47dd05beea3da522af9252df3b14f6ed.svg",
+    "static/media/week2-card-center.svg": "/week1-the-f2e/static/media/week2-card-center.6ae88f72aa611c903ab7b475b314011a.svg",
+    "static/media/week2-card.svg": "/week1-the-f2e/static/media/week2-card.53afcb8213c1df27ae00ddedaf1c7d5d.svg",
+    "static/media/week1-left.svg": "/week1-the-f2e/static/media/week1-left.5a6810e2727b52b38c14fd4f949be2a7.svg",
+    "static/media/week1-right.svg": "/week1-the-f2e/static/media/week1-right.409e6ebcaeb0a81fbb8ad541475b2b7f.svg",
+    "static/media/week3-left.svg": "/week1-the-f2e/static/media/week3-left.03fce5c55341d29718d896aa129683ee.svg",
+    "main.aa2c94b0.css.map": "/week1-the-f2e/static/css/main.aa2c94b0.css.map",
+    "main.6a58bf88.js.map": "/week1-the-f2e/static/js/main.6a58bf88.js.map",
+    "787.5181838f.chunk.js.map": "/week1-the-f2e/static/js/787.5181838f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aa2c94b0.css",
+    "static/js/main.6a58bf88.js"
+  ]
+}
