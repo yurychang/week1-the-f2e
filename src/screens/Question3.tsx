@@ -8,11 +8,6 @@ import Challenge from './Challenge'
 
 const Question3 = () => {
     const containerRef = useRef(null)
-    const qContainerRef = useRef(null)
-    const cardRef = useRef(null)
-    const emoji1Ref = useRef(null)
-    const emoji2Ref = useRef(null)
-    const emoji3Ref = useRef(null)
 
     const setBgColor = useStore((s) => s.setBgColor)
 
@@ -22,17 +17,17 @@ const Question3 = () => {
                 // in
                 gsap.timeline({
                     scrollTrigger: {
-                        trigger: qContainerRef.current,
+                        trigger: '[data-anim="question-content"]',
                         start: 'top+=300 bottom',
                         end: 'bottom bottom',
                         scrub: true,
                     },
                 })
-                    .to(cardRef.current, {
+                    .to('[data-anim="card"]', {
                         transform: '',
                     })
                     .to(
-                        emoji1Ref.current,
+                        '[data-anim="emoji1"]',
                         {
                             translateY: -240,
                             opacity: 1,
@@ -40,7 +35,7 @@ const Question3 = () => {
                         '<'
                     )
                     .to(
-                        emoji2Ref.current,
+                        '[data-anim="emoji2"]',
                         {
                             translateY: -600,
                             opacity: 1,
@@ -48,7 +43,7 @@ const Question3 = () => {
                         '<'
                     )
                     .to(
-                        emoji3Ref.current,
+                        '[data-anim="emoji3"]',
                         {
                             translateY: -700,
                             translateX: '-=100',
@@ -74,12 +69,12 @@ const Question3 = () => {
                         // },
                     },
                 })
-                    .to(cardRef.current, {
+                    .to('[data-anim="card"]', {
                         translateY: '-100vh',
                         opacity: 0,
                     })
                     .fromTo(
-                        emoji1Ref.current,
+                        '[data-anim="emoji1"]',
                         { opacity: 1 },
                         {
                             translateY: '-100vh',
@@ -88,7 +83,7 @@ const Question3 = () => {
                         '<'
                     )
                     .fromTo(
-                        emoji2Ref.current,
+                        '[data-anim="emoji2"]',
                         { opacity: 1 },
                         {
                             translateX: '-=600',
@@ -97,7 +92,7 @@ const Question3 = () => {
                         '<'
                     )
                     .fromTo(
-                        emoji3Ref.current,
+                        '[data-anim="emoji3"]',
                         { opacity: 1 },
                         {
                             translateX: '+=600',
@@ -148,36 +143,32 @@ const Question3 = () => {
     }, [setBgColor])
 
     return (
-        <div
-            ref={containerRef}
-            data-anim="question3-container"
-            className="relative"
-        >
+        <div ref={containerRef} className="relative">
             <div
                 data-anim="question3-bg"
                 className="absolute inset-0 z-10 bg-secondary"
             ></div>
             <section
-                ref={qContainerRef}
+                data-anim="question-content"
                 className="relative z-20 min-h-screen pt-[300px] pb-[100px] overflow-hidden"
             >
                 <DizzyEmoji
-                    ref={emoji1Ref}
+                    data-anim="emoji1"
                     width="220px"
                     className="absolute-x-center top-[1050px] z-10 drop-shadow-xl opacity-0"
                 />
                 <Star
-                    ref={emoji2Ref}
+                    data-anim="emoji2"
                     width="240px"
                     className="absolute left-[calc(50%-625px)] top-[1050px] z-10 drop-shadow-xl opacity-0"
                 />
                 <DizzyEmoji
-                    ref={emoji3Ref}
+                    data-anim="emoji3"
                     width="200px"
                     className="absolute left-[calc(50%+505px)] top-[1050px] z-10 rotate-[20deg] drop-shadow-xl opacity-0"
                 />
                 <div
-                    ref={cardRef}
+                    data-anim="card"
                     style={{
                         transform:
                             'translate(200px, 0) matrix(1, -0.2, 0, 1, 0, 0)',
