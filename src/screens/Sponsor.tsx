@@ -25,7 +25,7 @@ const Sponsor = () => {
                 </SponsorCard>
             </div>
             <div className="absolute-x-center bottom-2 text-black opacity-30">
-                Copyright © 2022 HexSchool, Chihling Kuo. All rights reserved.
+                Copyright © 2022 HexSchool, Yury Chang. All rights reserved.
             </div>
         </div>
     )
