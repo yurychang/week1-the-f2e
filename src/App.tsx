@@ -28,9 +28,9 @@ function App() {
             <Question3 />
             <Weeks />
             <Introduction />
-            <Award></Award>
-            <SignUp></SignUp>
-            <Sponsor></Sponsor>
+            <Award />
+            <SignUp />
+            <Sponsor />
         </>
     )
 }
