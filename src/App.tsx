@@ -19,17 +19,11 @@ function App() {
     return (
         <>
             <Header />
-            <div className="relative z-10">
-                <Banner />
-                <Question1 />
-                <Question2 />
-                <Question3 />
-            </div>
-            <div className="-mt-[100vh]">
-                <Challenge />
-                <div className="h-screen"></div>
-                <Weeks />
-            </div>
+            <Banner />
+            <Question1 />
+            <Question2 />
+            <Question3 />
+            <Weeks />
         </>
     )
 }

@@ -4,7 +4,7 @@ import OutlineText from 'components/OutlineText'
 import { ReactComponent as Horray } from 'assets/horray.svg'
 import useStore from 'store'
 
-const Challenge = () => {
+const Challenge = ({ tl }: { tl?: gsap.core.Timeline }) => {
     const setBgColor = useStore((s) => s.setBgColor)
 
     const containerRef = useRef(null)
@@ -15,57 +15,59 @@ const Challenge = () => {
     const overlayRef = useRef(null)
 
     useEffect(() => {
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: containerRef.current,
-                pin: true,
-                scrub: true,
-                onEnter: () => setBgColor('dark'),
-                onLeaveBack: () => setBgColor('light'),
-            },
-        })
-            .to(
-                text1Ref.current,
-                {
-                    translateX: 0,
-                    opacity: 1,
-                },
-                1.5
-            )
-            .to(
-                text2Ref.current,
-                {
-                    translateX: 0,
-                    opacity: 1,
-                },
-                '<'
-            )
-            .to(
-                horrayRef.current,
-                {
-                    translateY: 0,
-                    opacity: 1,
-                },
-                '<'
-            )
-            .to(overlayRef.current, {
+        // const cTl = gsap
+        //     .timeline({
+        //         // scrollTrigger: {
+        //         //     trigger: containerRef.current,
+        //         //     pin: true,
+        //         //     scrub: true,
+        //         //     onEnter: () => setBgColor('dark'),
+        //         //     onLeaveBack: () => setBgColor('light'),
+        //         // },
+        //     })
+        if (tl) {
+            tl.to(text1Ref.current, {
+                translateX: 0,
                 opacity: 1,
             })
-            .to(
-                page2Ref.current,
-                {
-                    translateY: '-100%',
+                .to(
+                    text2Ref.current,
+                    {
+                        translateX: 0,
+                        opacity: 1,
+                    },
+                    '<'
+                )
+                .to(
+                    horrayRef.current,
+                    {
+                        translateY: 0,
+                        opacity: 1,
+                    },
+                    '<'
+                )
+                .to(overlayRef.current, {
                     opacity: 1,
-                },
-                '<'
-            )
-    }, [setBgColor])
+                })
+                .to(
+                    page2Ref.current,
+                    {
+                        translateY: '-100%',
+                        opacity: 1,
+                    },
+                    '<'
+                )
+        }
+        // tl?.add(cTl)
+
+        // return () => cTl.progress(0).kill()
+    }, [setBgColor, tl])
 
     return (
         <>
             <section
                 ref={containerRef}
-                className="relative h-screen w-screen flex flex-col justify-center bg-dark"
+                className="relative h-screen w-screen flex flex-col justify-center -translate-y-full bg-dark"
             >
                 <OutlineText
                     strokeColor="hsl(var(--p))"
