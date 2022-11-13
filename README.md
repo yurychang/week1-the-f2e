@@ -8,5 +8,11 @@
 - build: `yarn build`
 
 ## 資料夾說明
+- assets 圖檔
+- components 元件
+- screens 畫面區塊
 
 ## 使用技術
+- React
+- Typescript
+- GSAP
