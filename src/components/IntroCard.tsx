@@ -27,7 +27,7 @@ const IntroCard = ({
             <div className="mb-4 text-[54px] text-secondary">{title}</div>
             <div className="mb-4 text-[40px] text-light">{desc}</div>
             <div className="grow">{image}</div>
-            <div className="flex gap-2 mb-6">
+            <div className="flex gap-2 mt-8 mb-6">
                 {labels.map((t, i) => (
                     <div
                         key={i}
